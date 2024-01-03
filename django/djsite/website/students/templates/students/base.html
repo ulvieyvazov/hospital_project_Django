@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="{% static 'students/css/styles.css' %}" rel="stylesheet" />
+    <title>{{title}}</title>
+  </head>
+  <body>
+    <header style="position: fixed; top: 0; left: 0; right: 0; background-color: #263c83;">
+      <ul class="mainmenu">
+        <li class="logo">
+          <a href="/"
+            ><div class="logo" style="border-radius: 50%;">
+              <img src="{% static 'students/images/medicine_logo.png' %}" alt="" /></div
+          ></a>
+        </li>
+        {% for m in menu %} {% if not forloop.last %}
+        <li><a href="{% url m.url_name %}">{{m.title}}</a></li>
+
+        {% else %}
+        <li class="last">
+          <button>
+            <a href="{% url m.url_name %}">{{m.title}}</a>
+          </button>
+        </li>
+        {% endif %} {% endfor %}
+      </ul>
+    </header>
+    <div class="main" style="padding-top: 60px;">
+      <section class="first" style="padding: 30px 50px; width: 250px;">
+        <ul>
+          {% if post_id %} {% for p in posts %}
+          <div class="student">
+            <p style="color: black; font-size: large;">{{p.group}} Həkimi</p>
+            <p style="color: black; font-size: large;">{{p.name}}</p>
+          </div>
+          {% endfor %} {% else %} {% if cat_selected == 0 %}
+          
+  
+          <li class="selected">Bütün Həkimlər</li>
+          {% else %}
+          <li class="selected"><a href="{% url 'home' %}">Bütün Həkimlər</a></li>
+          {% endif %} {% for c in cats %} {% if c.pk == cat_selected %}
+          <li class="selected">{{c.name}}</li>
+          {% else %}
+          <li><a href="{{ c.get_absolute_url }}">{{c.name}}</a></li>
+          {% endif %} {% endfor %} {% endif %}
+        </ul>
+      </section>
+
+      <section class="second">{% block content %} {% endblock %}</section>
+    </div>
+
+    <footer style="background-color: #263c83;">
+      <div class="container">
+        <b>2023 by Ulvi Eyvazov</b>
+      </div>
+    </footer>
+  </body>
+</html>

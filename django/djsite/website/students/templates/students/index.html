@@ -1,0 +1,41 @@
+{% extends 'students/base.html' %} {% block content %}
+<h1 style="font-size: 28px; padding: 15px;">Həkimlərimiz</h1>
+<div class="index" style="width: 100%; ">
+  <ul style=" display: flex; flex-wrap: wrap; justify-content: space-around; gap: 50px;">
+    {% for p in posts %}
+    <li style=" width: 400px; padding: 15px;">
+      <img src={{p.photo}} alt="" style="width: 320px; height: 200px;">
+      <h2>{{p.name}}</h2>
+     
+
+      {% if post_id %}
+      {% autoescape on%}
+      <p>{{p.content| linebreaks}}</p>
+      {% endautoescape %}
+      {% else %}
+      {% autoescape on%}
+      <p style="white-space: initial ;">{{p.content| truncatewords:30}}</p>
+      {% endautoescape %}
+      {% endif %}
+      
+      <div class="text">
+        <!-- <div>
+          {{p.scholarship}}
+          {% if p.scholarship %}
+          <p>Təqaüd alır</p>
+          {% else %}
+          <p>Təqüd almır</p>
+          {% endif %} 
+        </div> -->
+        <p class="link-read-post">
+          <a href="{{ p.get_absolute_url }}">Davamı</a>
+        </p>
+      </div>
+
+      <hr />
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+
+{% endblock %}

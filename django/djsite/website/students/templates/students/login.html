@@ -1,0 +1,15 @@
+{% extends 'students/base.html' %} {% block content %}
+<h1 style="margin: 20px 430px;">Login Page</h1>
+<div style="width: 400px; margin-left: 350px; margin-top: 50px; background-color: #263c83; padding: 50px 0; border-radius: 5px;">
+  <form action="" style="margin-left: 65px;">
+    <input type="text" style="padding: 8px 25px; font-size: 18px; border-radius: 10px; outline: none; border: 0;"
+      placeholder="Adınız" name="name"> <br>
+    <input type="text"
+      style="padding: 8px 25px; font-size: 18px; border-radius: 10px; outline: none; border: 0; margin: 8px 0;"
+      placeholder="Soyadınız"><br>
+    <input type="text" style="padding: 8px 25px; font-size: 18px; border-radius: 10px; outline: none; border: 0;"
+      placeholder="Email" name="email"><br>
+    <button style="padding: 6px 18px; font-size: 18px; border-radius: 10px; margin: 8px 80px; cursor: pointer;">Gonder</button>
+  </form>
+</div>
+{% endblock %}
